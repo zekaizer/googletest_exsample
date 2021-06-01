@@ -14,14 +14,18 @@ class TestFixture2 : public ::testing::Test
 public:
     TestFixture2()
     {
-        BCM2835Lib_MOCK::instancePtr.reset(new BCM2835Lib_MOCK());
+        // BCM2835Lib_MOCK::instancePtr.reset(new BCM2835Lib_MOCK());
     }
     ~TestFixture2()
     {
+        // BCM2835Lib_MOCK::instancePtr.reset();
+    }
+    virtual void SetUp() {
+        BCM2835Lib_MOCK::instancePtr.reset(new BCM2835Lib_MOCK());
+    }
+    virtual void TearDown() {
         BCM2835Lib_MOCK::instancePtr.reset();
     }
-    virtual void SetUp() {}
-    virtual void TearDown() {}
 };
 
 class BCM2835LibUnitTest2 : public TestFixture2 {

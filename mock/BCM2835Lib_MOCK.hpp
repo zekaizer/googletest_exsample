@@ -1,6 +1,16 @@
 #include "gmock/gmock.h"
 #include "BCM2835Lib.h"
 
+class BCM2835Lib
+{
+public:
+    virtual ~BCM2835Lib() {}
+
+    // mock methods
+    virtual int bcm2835_init() = 0;
+    virtual void bcm2835_gpio_fsel(uint8_t, uint8_t) = 0;
+};
+
 class BCM2835Lib_MOCK
 {
 public:
