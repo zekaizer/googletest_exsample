@@ -165,6 +165,7 @@ def _GenerateMocks(filename, source, ast_list, desired_class_names):
         if len(lines) == 2:
           del lines[-1]
 
+        lines.append('%sstatic std::unique_ptr<Mock%s> instancePtr;' % (' ' * (_INDENT), class_name))
         # Only close the class if there really is a class.
         lines.append('};')
         lines.append('')  # Add an extra newline.
