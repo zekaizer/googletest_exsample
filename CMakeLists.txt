@@ -31,3 +31,15 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(test_cmodule)
+
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+    list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}")
+    include(CodeCoverage)
+    append_coverage_compiler_flags()
+    setup_target_for_coverage_gcovr_html(
+            NAME coverage
+            EXECUTABLE test_cmodule
+            BASE_DIRECTORY "${PROJECT_SOURCE_DIR}/src"
+    )
+endif()
